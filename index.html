@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var email, pass;
+            $("#target").submit(function (event) {
+                email = $("#email").val();
+                pass = $("#password").val();
+                if (!email) {
+                    alert("please pass some information!")
+                } else {
+                    $.post("/login", { email: email, pass: pass }, function (data) {
+                        if (data === 'done') {
+                            window.location.href = "/api/proxy/";
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form id="target">
+        <input type="email" size="40" placeholder="Type your email!" id="email"><br />
+        <input type="password" size="40" placeholder="Type your password" id="password"><br />
+        <input type="submit" value="Submit" id="submit">
+    </form>
+</body>
+
+</html>
